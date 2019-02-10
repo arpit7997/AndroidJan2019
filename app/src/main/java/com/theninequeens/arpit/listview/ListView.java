@@ -4,15 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+import com.theninequeens.arpit.adapter.ListViewAdapter;
 import com.theninequeens.arpit.intent.R;
+import com.theninequeens.arpit.model.Student;
 
 import java.util.ArrayList;
 
 public class ListView extends AppCompatActivity {
 
 
-    ArrayList<String> names = new ArrayList<>();
+    ArrayList<Student> student = new ArrayList<>();
     android.widget.ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +23,18 @@ public class ListView extends AppCompatActivity {
         setContentView(R.layout.activity_list_view);
 
         listView = findViewById(R.id.listView);
-        names.add("arpit");
-        names.add("garvit");
-        names.add("milind");
-        names.add("raj");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.item_row, R.id.textView,
-                names);
+        for(int i=0;i<100; i++) {
+            student.add(new Student("arpit", "Android developer"));
+            student.add(new Student("milind", "Baniya"));
+            student.add(new Student("Garvit", "HOB"));
+            student.add(new Student("Raj", "center head"));
+        }
 
-        listView.setAdapter(adapter);
+
+        ListViewAdapter listViewAdapter = new ListViewAdapter(student, ListView.this);
+
+        listView.setAdapter(listViewAdapter);
 
 
 
